@@ -18,4 +18,21 @@ Countries.prototype.getData = function () {
     });
 }
 
+Countries.prototype.bindEvents = function () {
+  PubSub.subscribe('SelectView:form-submitted', (event) => {
+    const selectedCountry = evt.detail;
+    this.findCountryByIndex(selectedCountry);
+  })
+
+};
+
+Countries.prototype.findCountryByIndex = function (name) {
+  for (country of this.countries){
+    if (country.name == name) {
+      PubSub.publish('Countries:found-country', country)
+    }
+  }
+};
+
+
 module.exports = Countries;
