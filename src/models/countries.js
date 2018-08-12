@@ -29,15 +29,17 @@ Countries.prototype.getData = function () {
 Countries.prototype.bindEvents = function () {
   PubSub.subscribe('SelectView:form-submitted', (evt) => {
     const selectedCountry = evt.detail;
-    this.findCountryByIndex(selectedCountry);
+    this.findCountryByName(selectedCountry);
     console.log(selectedCountry);
   })
 
 };
 
-Countries.prototype.findCountryByIndex = function (name) {
+Countries.prototype.findCountryByName = function (name) {
+  const capitalizedName = name.toUpperCase();
   for (country of this.countries){
-    if (country.name == name || country.altSpellings[1] == name)  {
+    console.log(country.altSpellings[1]);
+    if (country.name.toUpperCase() == capitalizedName || country.altSpellings[1] == name)  {
       PubSub.publish('Countries:found-country', country)
       remove(this.countries, country);
     }
