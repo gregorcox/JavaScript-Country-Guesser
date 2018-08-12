@@ -1,5 +1,6 @@
 const PubSub = require('../helpers/pub_sub.js');
 const Request = require('../helpers/request_helper.js');
+const SelectView = require('../views/select_view.js');
 
 const Countries = function () {
   this.countries = [];
@@ -36,7 +37,7 @@ Countries.prototype.bindEvents = function () {
 
 Countries.prototype.findCountryByIndex = function (name) {
   for (country of this.countries){
-    if (country.name == name) {
+    if (country.name == name || country.altSpellings[1] == name)  {
       PubSub.publish('Countries:found-country', country)
       remove(this.countries, country);
     }

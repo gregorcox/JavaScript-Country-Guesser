@@ -15,13 +15,10 @@ ResultView.prototype.bindEvents = function () {
 ResultView.prototype.render = function (country) {
 
   const countryList = document.createElement("ul");
-
-
   const countryName = document.createElement('li');
   countryName.textContent = `${country.name}`;
 
   countryList.appendChild(countryName);
-
   this.container.appendChild(countryList);
 
 };
