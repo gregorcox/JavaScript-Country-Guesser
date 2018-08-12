@@ -5,6 +5,13 @@ const Countries = function () {
   this.countries = [];
 }
 
+function remove(array, element) {
+    const index = array.indexOf(element);
+    if (index !== -1) {
+        array.splice(index, 1);
+    }
+}
+
 Countries.prototype.getData = function () {
   const url = 'https://restcountries.eu/rest/v2/region/europe';
   const request = new Request(url);
@@ -31,6 +38,7 @@ Countries.prototype.findCountryByIndex = function (name) {
   for (country of this.countries){
     if (country.name == name) {
       PubSub.publish('Countries:found-country', country)
+      remove(this.countries, country);
     }
   }
 };
