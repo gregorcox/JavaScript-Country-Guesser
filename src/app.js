@@ -1,5 +1,6 @@
 const Countries = require('./models/countries.js');
 const SelectView = require('./views/select_view.js');
+const ResultView = require('./views/result_view.js');
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,6 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const selectView = new SelectView(countryForm);
   selectView.bindEvents();
+
+  const countryContainer = document.querySelector('#country-container');
+  const resultView = new ResultView(countryContainer);
+  resultView.bindEvents();
 
   const countries = new Countries();
   countries.getData();

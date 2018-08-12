@@ -11,3 +11,19 @@ ResultView.prototype.bindEvents = function () {
   })
 
 };
+
+ResultView.prototype.render = function (country) {
+
+  const countryList = document.createElement("ol");
+
+
+  const countryName = document.createElement('li');
+  countryName.textContent = `${country.name}`;
+
+  countryList.appendChild(countryName);
+
+  this.container.appendChild(countryList);
+
+};
+
+module.exports = ResultView;
