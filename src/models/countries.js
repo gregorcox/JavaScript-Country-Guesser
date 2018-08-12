@@ -19,9 +19,10 @@ Countries.prototype.getData = function () {
 }
 
 Countries.prototype.bindEvents = function () {
-  PubSub.subscribe('SelectView:form-submitted', (event) => {
+  PubSub.subscribe('SelectView:form-submitted', (evt) => {
     const selectedCountry = evt.detail;
     this.findCountryByIndex(selectedCountry);
+    console.log(selectedCountry);
   })
 
 };
