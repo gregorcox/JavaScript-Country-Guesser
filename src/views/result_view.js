@@ -10,6 +10,12 @@ ResultView.prototype.bindEvents = function () {
     this.render(country);
   })
 
+  PubSub.subscribe('Countries:array-length', (evt) => {
+    const score = 53 - evt.detail;
+    console.log(score);
+    this.count(score);
+  })
+
 };
 
 ResultView.prototype.render = function (country) {
@@ -20,7 +26,15 @@ ResultView.prototype.render = function (country) {
 
   countryList.appendChild(countryName);
   this.container.appendChild(countryList);
+};
+
+ResultView.prototype.count = function (score) {
+
+  const counter = document.querySelector("#counter");
+  counter.textContent = `Score: ${score}/52`;
 
 };
+
+
 
 module.exports = ResultView;

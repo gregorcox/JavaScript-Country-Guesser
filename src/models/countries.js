@@ -38,10 +38,11 @@ Countries.prototype.bindEvents = function () {
 Countries.prototype.findCountryByName = function (name) {
   const capitalizedName = name.toUpperCase();
   for (country of this.countries){
-    console.log(country.altSpellings[1]);
     if (country.name.toUpperCase() == capitalizedName || country.altSpellings[1] == name)  {
       PubSub.publish('Countries:found-country', country)
       remove(this.countries, country);
+      const arrayLength = this.countries.length;
+      PubSub.publish('Countries:array-length', arrayLength)
     }
   }
 };
